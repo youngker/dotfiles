@@ -1,0 +1,19 @@
+[Desktop Entry]
+DefaultProfile=Dracula.profile
+
+[Favorite Profiles]
+Favorites=
+
+[KonsoleWindow]
+ShowMenuBarByDefault=false
+
+[MainWindow]
+Height 768=726
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAAnUAAALWAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+Width 1280=629
+
+[TabBar]
+TabBarPosition=Top
+TabBarVisibility=ShowTabBarWhenNeeded
