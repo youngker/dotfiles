@@ -1,0 +1,30 @@
+#!/bin/bash
+
+XKBDIR=/tmp/xkb
+[ -d ${XKBDIR}/symbols ] || mkdir -p ${XKBDIR}/{keymap,symbols}
+
+cat > $XKBDIR/keymap/custom.xkb << EOF
+xkb_keymap {
+    xkb_keycodes  { include "xfree86+aliases(qwerty)"	};
+    xkb_types     { include "complete"	};
+    xkb_compat    { include "complete"	};
+    xkb_symbols   { include "pc+us+custom(hypers)" };
+    xkb_geometry  { include "pc(pc104)"	};
+};
+EOF
+
+cat > $XKBDIR/symbols/custom << EOF
+default partial
+xkb_symbols "hypers" {
+    key  <TAB> { [ Hyper_L, Hyper_L ] };
+    key <I23> { [ Tab,	ISO_Left_Tab ] };
+    modifier_map Mod3 { Hyper_L };
+};
+EOF
+
+xkbcomp -synch -w3 -I$XKBDIR $XKBDIR/keymap/custom.xkb $DISPLAY
+if pgrep -x "xcape" > /dev/null
+then
+   pkill "xcape"
+fi
+xcape -e "Hyper_L=Tab"
