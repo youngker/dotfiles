@@ -1,6 +1,8 @@
 Config
   { border      = FullB
-  , borderColor = "#0E0E0E"
+  , borderColor = "#282A36"
+  , bgColor     = "#282A36"
+  , fgColor     = "#6272A4"
   , font        = "xft:DejaVu Sans Mono:size=8"
   , position    = Static { xpos = 8, ypos = 8, width = 1350, height = 20 }
   , template    = "}%StdinReader%{%battery% %date%  "
