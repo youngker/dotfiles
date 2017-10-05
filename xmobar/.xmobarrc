@@ -1,22 +1,112 @@
-Config
-  { border      = FullB
-  , borderColor = "#282A36"
-  , bgColor     = "#282A36"
-  , fgColor     = "#6272A4"
-  , font        = "xft:DejaVu Sans Mono:size=8"
-  , position    = Static { xpos = 8, ypos = 8, width = 1350, height = 20 }
-  , template    = "}%StdinReader%{%battery% %date%  "
-  , textOffset  = 14
-  , commands =
-    [ Run StdinReader
-    , Run BatteryP
-        ["BAT0"]
-        ["-t", "<acstatus>", "--"
-        ,"-O", "<left>%+ <fc=#AEAEAE>|</fc>"
-        ,"-o", "<left>%- <fc=#AEAEAE>|</fc>"
-        ,"-i", ""
+Config {
+
+   -- appearance
+     font =         "xft:Dejavu Sans Mono:Bold:size=10:bold:antialias=true"
+   , additionalFonts = ["xft:Font Awesome:size=9:antialias=true"]
+   , bgColor =      "black"
+   , fgColor =      "white"
+   , position =     TopSize C 100 25
+   -- , border =       BottomB
+   -- , borderColor =  "#646464"
+
+   -- layout
+   , sepChar =  "%"   -- delineator between plugin names and straight text
+   , alignSep = "}{"  -- separator between left-right alignment
+   -- , template = " %StdinReader%  }{ %multicpu% | %coretemp% | %memory% | %dynnetwork% | %battery% | %date% || %kbd% "
+   , template = " %StdinReader%  }{ %multicpu% %memory% %dynnetwork% %date% "
+
+   -- general behavior
+   , lowerOnStart =     True    -- send to bottom of window stack on start
+   , hideOnStart =      False   -- start with window unmapped (hidden)
+   , allDesktops =      True    -- show on all desktops
+   , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
+   , pickBroadest =     False   -- choose widest display (multi-monitor)
+   , persistent =       True    -- enable/disable hiding (True = disabled)
+
+   -- plugins
+   --   Numbers can be automatically colored according to their value. xmobar
+   --   decides color based on a three-tier/two-cutoff system, controlled by
+   --   command options:
+   --     --Low sets the low cutoff
+   --     --High sets the high cutoff
+   --
+   --     --low sets the color below --Low cutoff
+   --     --normal sets the color between --Low and --High cutoffs
+   --     --High sets the color above --High cutoff
+   --
+   --   The --template option controls how the plugin is displayed. Text
+   --   color can be set by enclosing in <fc></fc> tags. For more details
+   --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
+   , commands =
+
+        -- weather monitor
+        [ Run Weather "RJTT" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
+                             ] 36000
+
+        -- network activity monitor (dynamic interface resolution)
+        , Run DynNetwork     [ "--template" , "<fn=1>\xf0ac</fn> <tx>/<rx>"
+                             , "--Low"      , "1000"       -- units: kB/s
+                             , "--High"     , "5000"       -- units: kB/s
+                             , "--low"      , "darkgreen"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "darkred"
+                             , "-w"         , "3"
+                             ] 10
+
+        -- cpu activity monitor
+        , Run MultiCpu       [ "--template" , "<fn=1>\xf108</fn> <total0>/<total1>"
+                             , "--Low"      , "50"         -- units: %
+                             , "--High"     , "85"         -- units: %
+                             , "--low"      , "darkgreen"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "darkred"
+                             , "-w"         , "2"
+                             ] 10
+
+        -- cpu core temperature monitor
+        , Run CoreTemp       [ "--template" , "Temp: <core0>°C|<core1>°C"
+                             , "--Low"      , "70"        -- units: °C
+                             , "--High"     , "80"        -- units: °C
+                             , "--low"      , "darkgreen"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "darkred"
+                             ] 50
+
+        -- memory usage monitor
+        , Run Memory         [ "--template" ,"<fn=1>\xf2db</fn> <usedratio>"
+                             , "--Low"      , "20"        -- units: %
+                             , "--High"     , "90"        -- units: %
+                             , "--low"      , "darkgreen"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "darkred"
+                             ] 10
+
+        -- battery monitor
+        , Run Battery        [ "--template" , "<fn=1>\xf240</fn> <acstatus>"
+                             , "--Low"      , "10"        -- units: %
+                             , "--High"     , "80"        -- units: %
+                             , "--low"      , "darkred"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "darkgreen"
+
+                             , "--" -- battery specific options
+                                       -- discharging status
+                                       , "-o" , "<left>% (<timeleft>)"
+                                       -- AC "on" status
+                                       , "-O" , "<fc=#dAA520>Charging</fc>"
+                                       -- charged status
+                                       , "-i" , "<fc=#006000>Charged</fc>"
+                             ] 50
+
+        -- time and date indicator
+        --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
+        -- , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
+        , Run Date           "<fn=1>\xf133</fn> %a, %d %B %H:%M" "date" 100
+
+        -- keyboard layout indicator
+        , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
+                             , ("us"         , "<fc=#8B0000>US</fc>")
+                             ]
+        ,Run StdinReader
         ]
-        100
-    , Run Date "%A, %d %B %H:%M" "date" 100
-    ]
-}
+   }
