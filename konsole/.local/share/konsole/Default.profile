@@ -1,10 +1,10 @@
 [Appearance]
 BoldIntense=true
-ColorScheme=Dracula
+ColorScheme=base16-grayscale-light
 Font=Fira Code,10,-1,5,50,0,0,0,0,0
 
 [General]
-Name=Dracula
+Name=Default
 Parent=FALLBACK/
 ShowTerminalSizeHint=false
 

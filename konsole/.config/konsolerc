@@ -1,5 +1,5 @@
 [Desktop Entry]
-DefaultProfile=Dracula.profile
+DefaultProfile=Default.profile
 
 [Favorite Profiles]
 Favorites=
@@ -8,10 +8,12 @@ Favorites=
 ShowMenuBarByDefault=false
 
 [MainWindow]
+Height 640=587
 Height 768=724
 MenuBar=Disabled
 State=AAAA/wAAAAD9AAAAAAAAAnUAAALWAAAABAAAAAQAAAAIAAAACPwAAAAA
 ToolBarsMovable=Disabled
+Width 1024=498
 Width 1280=1264
 
 [TabBar]
