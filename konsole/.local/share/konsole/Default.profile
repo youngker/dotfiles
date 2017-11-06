@@ -1,7 +1,7 @@
 [Appearance]
 BoldIntense=true
-ColorScheme=base16-onedark
-Font=Fira Code,9,-1,5,50,0,0,0,0,0
+ColorScheme=nord
+Font=Fira Mono,9,-1,5,50,0,0,0,0,0
 
 [General]
 Name=Default
