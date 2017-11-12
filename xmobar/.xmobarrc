@@ -1,10 +1,10 @@
 Config {
 
    -- appearance
-     font =         "xft:Dejavu Sans Mono:Bold:size=10:bold:antialias=true"
+     font =         "xft:Dejavu Sans Mono:Bold:size=8:bold:antialias=true"
    , additionalFonts = ["xft:Font Awesome:size=9:antialias=true"]
-   , bgColor =      "#1A1829"
-   , fgColor =      "#ac9b9d"
+   , bgColor =      "#2e3440"
+   , fgColor =      "#4c566a"
    , position =     TopSize C 100 25
    -- , border =       BottomB
    -- , borderColor =  "#646464"
@@ -45,7 +45,7 @@ Config {
 
         -- network activity monitor (dynamic interface resolution)
         -- , Run DynNetwork     [ "--template" , "<fn=1>\xf0ac</fn> <tx>/<rx>"
-        , Run DynNetwork     [ "--template" , "<fc=#62D6E8><fn=1>\xf0ac</fn></fc> <tx>/<rx>"
+        , Run DynNetwork     [ "--template" , "<fc=#ebcb8b><fn=1>\xf0ac</fn></fc> <tx>/<rx>"
         --                     , "--Low"      , "1000"       -- units: kB/s
         --                     , "--High"     , "5000"       -- units: kB/s
         --                     , "--low"      , "darkgreen"
@@ -56,7 +56,7 @@ Config {
 
         -- cpu activity monitor
         -- , Run MultiCpu       [ "--template" , "<fn=1>\xf108</fn> <total0>/<total1>"
-        , Run MultiCpu       [ "--template" , "<fc=#62D6E8><fn=1>\xf108</fn></fc> <total0>"
+        , Run MultiCpu       [ "--template" , "<fc=#bf616a><fn=1>\xf108</fn></fc> <total0>"
         --                     , "--Low"      , "50"         -- units: %
         --                     , "--High"     , "85"         -- units: %
         --                     , "--low"      , "darkgreen"
@@ -76,7 +76,7 @@ Config {
 
         -- memory usage monitor
         -- , Run Memory         [ "--template" ,"<fn=1>\xf2db</fn> <usedratio>"
-        , Run Memory         [ "--template" ,"<fc=#62D6E8><fn=1>\xf2db</fn></fc> <usedratio>"
+        , Run Memory         [ "--template" ,"<fc=#d08770><fn=1>\xf2db</fn></fc> <usedratio>"
         --                     , "--Low"      , "20"        -- units: %
         --                     , "--High"     , "90"        -- units: %
         --                     , "--low"      , "darkgreen"
@@ -104,7 +104,7 @@ Config {
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
         -- , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
-        , Run Date           "<fc=#62D6E8><fn=1>\xf133</fn></fc> %a, %d %B %H:%M" "date" 100
+        , Run Date           "<fc=#a3be8c><fn=1>\xf133</fn></fc> %a, %d %B %H:%M" "date" 100
 
         -- keyboard layout indicator
         , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
