@@ -18,7 +18,7 @@
 *.foreground:   nord4
 *.background:   nord0
 *.cursorColor:  nord4
-*fading: 35
+*fading: 0
 *fadeColor: nord3
 
 *.color0: nord1
@@ -40,9 +40,8 @@
 
 URxvt.urgentOnBell: off
 URxvt.visualBell: off
-! URxvt.iso14755: off
-! URxvt.iso14755_52: off
-!URxvt.meta8: true
+URxvt.iso14755: off
+URxvt.iso14755_52: off
 URxvt.depth: 32
 
 URxvt.internalBorder: 5
@@ -55,9 +54,6 @@ URxvt.scrollWithBuffer:  true
 URxvt.scrollTtyKeypress: true
 
 ! URxvt.inheritPixmap: false
-! URxvt.fading: 0
-! URxvt.background: nord0
-! URxvt.foreground: nord4
 
 Xft.dpi:        96
 Xft.antialias:  true
@@ -65,10 +61,10 @@ Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
 
-URxvt.font: xft:Fira Code Medium:regular:pixelsize=12
-URxvt.boldFont: xft:Fira Code Medium:bold:pixelsize=12
-URxvt.italicFont: xft:Fira Code Medium:italic:pixelsize=12
-URxvt.boldItalicFont: xft:Fira Code Medium:bold:italic:pixelsize=12
+URxvt.font: xft:Source Code Pro Medium:regular:pixelsize=12
+URxvt.boldFont: xft:Source Code Pro Medium:bold:pixelsize=12
+URxvt.italicFont: xft:Source Code Pro Medium:italic:pixelsize=12
+URxvt.boldItalicFont: xft:Source Code Pro Medium:bold:italic:pixelsize=12
 URxvt.letterSpace: -2
 
 ! Disable screen printing by overriding the default print pipe.
@@ -90,19 +86,14 @@ URxvt.print-pipe: "cat >/dev/null"
 ! URxvt.keysym.Control-Page_Down: \033[6;5~
 
 URxvt.perl-lib: ${HOME}/.urxvt/ext
-URxvt.perl-ext-common: keyboard-select
+URxvt.perl-ext-common: keyboard-select,font-size
 
-URxvt.keysym.M-s: perl:keyboard-select:activate
-URxvt.keysym.M-r: perl:keyboard-select:search
-
-URxvt.clipboard.autocopy: true
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-v: perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+! URxvt.keysym.M-s: perl:keyboard-select:activate
+! URxvt.keysym.M-r: perl:keyboard-select:search
 
 URxvt.keysym.C-minus: perl:font-size:decrease
 URxvt.keysym.C-equal: perl:font-size:increase
-URxvt.font-size.step: 4
+URxvt.font-size.step: 1
 
 URxvt.color0: nord1
 URxvt.color1: nord2
