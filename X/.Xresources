@@ -61,10 +61,10 @@ Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintslight
 
-URxvt.font: xft:Source Code Pro Medium:regular:pixelsize=12
-URxvt.boldFont: xft:Source Code Pro Medium:bold:pixelsize=12
-URxvt.italicFont: xft:Source Code Pro Medium:italic:pixelsize=12
-URxvt.boldItalicFont: xft:Source Code Pro Medium:bold:italic:pixelsize=12
+URxvt.font: xft:Source Code Pro:regular:pixelsize=12
+URxvt.boldFont: xft:Source Code Pro:bold:pixelsize=12
+URxvt.italicFont: xft:Source Code Pro:italic:pixelsize=12
+URxvt.boldItalicFont: xft:Source Code Pro:bold:italic:pixelsize=12
 URxvt.letterSpace: -2
 
 ! Disable screen printing by overriding the default print pipe.
