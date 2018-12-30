@@ -4,7 +4,7 @@ Config {
      font =         "xft:Dejavu Sans Mono:Bold:size=8:bold:antialias=true"
    , additionalFonts = ["xft:Font Awesome:size=9:antialias=true"]
    , bgColor =      "#2e3440"
-   , fgColor =      "#4c566a"
+   , fgColor =      "#ECEFF4"
    , position =     TopSize C 100 25
    -- , border =       BottomB
    -- , borderColor =  "#646464"

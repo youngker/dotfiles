@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd .dotfiles
+stow X
+stow bash
+stow compton
+stow tmux
+stow rofi
+stow scripts
+stow xmobar
+stow xmonad
+cd ..
