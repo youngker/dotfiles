@@ -15,7 +15,6 @@ stow compton
 stow tmux
 stow rofi
 stow scripts
-stow xmobar
 stow xmonad
 cd ..
 

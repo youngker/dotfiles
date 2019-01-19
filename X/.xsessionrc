@@ -7,6 +7,10 @@ stow compton
 stow tmux
 stow rofi
 stow scripts
-stow xmobar
 stow xmonad
 cd ..
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi

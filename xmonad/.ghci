@@ -1,0 +1,24 @@
+:seti -XNoMonomorphismRestriction
+:seti -XTypeFamilies
+:seti -XGADTs
+:seti -XDataKinds
+
+:m +Data.Maybe
+:m +Data.List
+:m +Data.Char
+:m +Data.Ord
+:m +Data.Monoid
+:m +Data.Tuple
+:m +Data.List.Split
+import Control.Arrow hiding ((|||))
+:m +Control.Applicative
+:m +Control.Monad
+:m +Data.Functor.Compose
+
+import qualified Data.Map as M
+import qualified Data.Set as S
+import qualified Data.Foldable as F
+import qualified Data.Traversable as T
+
+:set prompt "λ> "
+let {infixr 8 .: ; a .: b = a + b/60 }
