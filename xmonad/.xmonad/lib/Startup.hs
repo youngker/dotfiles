@@ -30,11 +30,11 @@ myStartup :: X ()
 myStartup = do
   ewmhDesktopsStartup
   setDefaultCursor xC_left_ptr
-  delayedStartOnce False 00 "compton"
-  delayedStartOnce True 00 "~/bin/bingwallpaper -1"
-  delayedStartOnce True 00 "~/bin/init-keyboard"
-  delayedStartOnce True 01 myTerminalApp
-  delayedStartOnce False 01 "emacs --daemon"
+  delayedStartOnce False 00 myCompositorApp
+  delayedStartOnce False 00 myBackgroundSetting
+  delayedStartOnce False 00 myKeyboardSetting
+  delayedStartOnce False 01 myTerminalApp
+  delayedStartOnce False 01 myEmacsDaemon
   spawn "xrdb ~/.Xresources &"
 
 spawnToWorkspace :: String -> String -> X ()

@@ -14,10 +14,22 @@ myBrowserApp :: String
 myBrowserApp = "google-chrome --no-sandbox"
 
 myTerminalApp :: String
-myTerminalApp = "~/bin/st"
+myTerminalApp = "st"
 
 myEditorApp :: String
 myEditorApp = "emacs"
+
+myEmacsDaemon :: String
+myEmacsDaemon = "emacs --daemon"
+
+myKeyboardSetting :: String
+myKeyboardSetting = "init-keyboard"
+
+myBackgroundSetting :: String
+myBackgroundSetting = "bingwallpaper -1"
+
+myCompositorApp :: String
+myCompositorApp = "compton"
 
 myMailClient :: String
 myMailClient = "thunderbird-bin"
