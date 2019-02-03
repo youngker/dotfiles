@@ -63,14 +63,14 @@ myKeys conf@ XConfig {XMonad.modMask = modm} = M.fromList $
   -- mod-shift-[1..9], Move client to workspace N
   [
     ((m .|. modm, k), windows $ f i)
-      | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+      | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_4]
       , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
   ]
   ++
   -- if you're on workspace 1, hitting mod-ctrl-5 will swap workspaces 1 and 5
   [
     ((modm .|. controlMask, k), windows $ swapWithCurrent i)
-      | (i, k) <- zip myWorkspaces [xK_1 .. xK_9]
+      | (i, k) <- zip myWorkspaces [xK_1 .. xK_4]
   ]
 
 

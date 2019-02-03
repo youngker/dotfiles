@@ -49,7 +49,7 @@ fireSPConfig = def
   }
 
 myWorkspaces :: [String]
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces    = ["1","2","3","4"]
 
 myFullscreenHooks = [ composeOne [ isFullscreen -?> doFullFloat  ], resource =? "synapse" --> doIgnore ]
 
@@ -60,24 +60,11 @@ myManagementHooks = composeAll . concat $
         doFloat              | t <- myOtherFloats]
     , [ fmap ( c `L.isInfixOf`) className -->
                doShift (head myWorkspaces) | c <- myBrowsers]
-    --, [ className   =? c                  -->
-    --           doShift (myWorkspaces !! 1) | c <- ["Emacs"]]
     , [ className   =? c                  -->
-               doShift (myWorkspaces !! 3) | c <- myMusic]
-    , [ fmap ( c `L.isInfixOf`) className -->
-               doShift "IM"                | c <- imApps]
-    , [ className   =? c                  -->
-               doShift "Mail"              | c <- ["Thunderbird"] ]
+              doShift (myWorkspaces !! 3) | c <- ["Emacs"]]
     ]
-  where myOtherFloats = ["alsamixer", "chrome-app-list", "cappl", "htop", "nmtui"]
-        imApps        = ["Skype", "Pidgin"]
-        myBrowsers    = ["Firefox", "Chrome", "google-chrome-beta"]
-        myMusic       = ["Rhythmbox", "Banshee", "Spotify"]
-
--- These layouts are stored in the Custom.Layouts module
--- myLayoutHook = myLayout --im normal where
---    normal   = myLayout
---    im       = onWorkspace "im" imLayout
+  where myOtherFloats = ["urxvt"]
+        myBrowsers    = ["Firefox"]
 
 manageScratchPad :: ManageHook
 manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
