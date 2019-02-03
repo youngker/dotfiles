@@ -32,7 +32,7 @@ myStartup = do
   setDefaultCursor xC_left_ptr
   delayedStartOnce False 00 myCompositorApp
   delayedStartOnce False 00 myBackgroundSetting
-  delayedStartOnce False 00 myKeyboardSetting
+  -- delayedStartOnce False 00 myKeyboardSetting
   delayedStartOnce False 01 myTerminalApp
   delayedStartOnce False 01 myEmacsDaemon
   spawn "xrdb ~/.Xresources &"

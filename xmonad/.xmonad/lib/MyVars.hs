@@ -5,7 +5,7 @@ import XMonad
 data Action = Increase | Decrease
 
 myModMask :: KeyMask
-myModMask = mod3Mask
+myModMask = mod1Mask
 
 myAppLauncherApp :: String
 myAppLauncherApp = "rofi -show run"
@@ -17,7 +17,7 @@ myTerminalApp :: String
 myTerminalApp = "st"
 
 myEditorApp :: String
-myEditorApp = "emacs"
+myEditorApp = "emacsclient -c"
 
 myEmacsDaemon :: String
 myEmacsDaemon = "emacs --daemon"

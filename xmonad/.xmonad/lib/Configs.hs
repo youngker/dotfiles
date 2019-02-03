@@ -49,7 +49,7 @@ fireSPConfig = def
   }
 
 myWorkspaces :: [String]
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9", "IM", "Mail"]
+myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 myFullscreenHooks = [ composeOne [ isFullscreen -?> doFullFloat  ], resource =? "synapse" --> doIgnore ]
 
