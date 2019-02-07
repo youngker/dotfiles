@@ -1,9 +1,9 @@
 Config {
 
    -- appearance
-     font =         "xft:Dejavu Sans Mono:Bold:size=8:bold:antialias=true"
-   , additionalFonts = ["xft:Font Awesome:size=9:antialias=true"]
-   , bgColor =      "#2e3440"
+     font =         "xft:Operator Mono SSm:Bold:size=11:bold:antialias=true"
+   , additionalFonts = ["xft:Font Awesome:size=11:antialias=true"]
+   , bgColor =      "#2E3440"
    , fgColor =      "#ECEFF4"
    , position =     TopSize C 100 25
    -- , border =       BottomB

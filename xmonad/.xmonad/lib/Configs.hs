@@ -35,14 +35,15 @@ commands = M.fromList
 -- shellprompt config
 fireSPConfig :: XPConfig
 fireSPConfig = def
-  { bgColor             = colorFocusBG,
+  { font                = "xft:Operator Mono SSm Bold:size=30",
+    bgColor             = colorFocusBG,
     fgColor             = colorNormalFG,
     bgHLight            = colorNormalBG,
     fgHLight            = colorFocusFG,
     borderColor         = "black",
-    promptBorderWidth   = 0,
-    position            = Bottom,
-    height              = 12,
+    promptBorderWidth   = 2,
+    position            = CenteredAt 0.5 0.5,
+    height              = 200,
     historySize         = 256,
     defaultText         = "",
     autoComplete        = Nothing
@@ -81,23 +82,21 @@ myFocusedBorderColor = "#2e3440"
 -- colors for shellprompt
 colorNormalFG      = "#B6B4B8"
 colorNormalBG      = "#2F2E2B"
-colorNormalBO      = "#1C2636"
 colorFocusFG       = "#FFFFFF"
 colorFocusBG       = "#2F2E2B"
-colorFocusBO       = "#FF0000"
-colorOtherFG       = "#707070"
-colorOtherBG       = "#2F2E2B"
 colorInActiveBG    = "#2e3440"
 colorInActiveTabBG = "#2e3440"
 colorActiveBG      = "#5e81ac"
 
 myTabConfig = def
   { fontName            = "xft:Dejavu Sans Mono:size=8",
-    inactiveColor       = colorInActiveTabBG,
     inactiveBorderColor = colorInActiveTabBG,
-    activeColor         = colorActiveBG,
+    inactiveColor       = colorInActiveTabBG,
+    inactiveTextColor   = colorInActiveBG,
     activeBorderColor   = colorActiveBG,
-    decoHeight          = 20
+    activeColor         = colorActiveBG,
+    activeTextColor     = colorActiveBG,
+    decoHeight          = 10
   }
 
 myTitleBarConfig = def

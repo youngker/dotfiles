@@ -49,7 +49,7 @@ myAdditionalKeys =
 -- | Keys which don't exist in the simple default string mappings above
 myComplexKeys :: [((KeyMask, KeySym), X())]
 myComplexKeys =
-  [ ((mod1Mask, xK_F12   ), commandPrompt fireSPConfig "command" commands)
+  [ ((mod1Mask, xK_m ), commandPrompt fireSPConfig "command" commands)
   , ((mod3Mask, xK_comma ), sendMessage (IncMasterN 1)) -- Increment master win cnt
   , ((mod3Mask, xK_period), sendMessage (IncMasterN (-1))) -- Decrement master count
   -- , ((mod4Mask, xK_F1), spawn myBrowserApp)
