@@ -62,7 +62,7 @@ myManagementHooks = composeAll . concat $
     , [ fmap ( c `L.isInfixOf`) className -->
                doShift (head myWorkspaces) | c <- myBrowsers]
     , [ className   =? c                  -->
-              doShift (myWorkspaces !! 3) | c <- ["Emacs"]]
+              doShift (myWorkspaces !! 3) | c <- ["Thunderbird"]]
     ]
   where myOtherFloats = ["urxvt"]
         myBrowsers    = ["Firefox"]

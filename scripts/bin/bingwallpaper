@@ -80,7 +80,9 @@ do
   echo "Bing Image of the day: $reqImgURL"
 
   # Getting Image Name.
-  imgName=${reqImgURL##*/}
+  imgName=${reqImgURL##*th?id=}
+
+  imgName=${imgName%%&rf*}
 
   # Create Path Dir.
   mkdir -p $path

@@ -36,7 +36,7 @@ myAdditionalKeys =
   , ("M-t", withFocused $ windows . W.sink)
 
   -- Launchers
-  , ("M-S-p", spawn myAppLauncherApp)
+  , ("M-S-o", spawn myAppLauncherApp)
   , ("M-<Return>", spawn myTerminalApp)
   , ("M-S-<Return>", spawn myEditorApp)
   , ("M-S-b", spawn myBrowserApp)
@@ -49,7 +49,7 @@ myAdditionalKeys =
 -- | Keys which don't exist in the simple default string mappings above
 myComplexKeys :: [((KeyMask, KeySym), X())]
 myComplexKeys =
-  [ ((mod1Mask, xK_m ), commandPrompt fireSPConfig "command" commands)
+  [ ((mod1Mask, xK_F1 ), commandPrompt fireSPConfig "command" commands)
   , ((mod3Mask, xK_comma ), sendMessage (IncMasterN 1)) -- Increment master win cnt
   , ((mod3Mask, xK_period), sendMessage (IncMasterN (-1))) -- Decrement master count
   -- , ((mod4Mask, xK_F1), spawn myBrowserApp)
@@ -64,7 +64,15 @@ myKeys conf@ XConfig {XMonad.modMask = modm} = M.fromList $
   [
     ((m .|. modm, k), windows $ f i)
       | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_4]
-      , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
+      , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
+  ]
+  ++
+  -- mod-{w,e,r} %! Switch to physical/Xinerama screens 1, 2, or 3
+  -- mod-shift-{w,e,r} %! Move client to screen 1, 2, or 3
+  [
+    ((m .|. modm .|. controlMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+      | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+      , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
   ]
   ++
   -- if you're on workspace 1, hitting mod-ctrl-5 will swap workspaces 1 and 5

@@ -9,7 +9,7 @@
 :m +Data.Ord
 :m +Data.Monoid
 :m +Data.Tuple
-:m +Data.List.Split
+-- :m +Data.List.Split
 import Control.Arrow hiding ((|||))
 :m +Control.Applicative
 :m +Control.Monad
@@ -22,3 +22,6 @@ import qualified Data.Traversable as T
 
 :set prompt "λ> "
 let {infixr 8 .: ; a .: b = a + b/60 }
+
+:def hoogle \x -> return $ ":!hoogle \"" ++ x ++ "\""
+:def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""

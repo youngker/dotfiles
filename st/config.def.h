@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Operator Mono:bold:pixelsize=15:antialias=true:autohint=true:hintstyle=1:rgba=1:dpi=96";
+static char *font = "Operator Mono SSm Book:bold:pixelsize=15:antialias=true:autohint=true:hintstyle=1:rgba=1:dpi=96";
 static int borderpx = 2;
 
 /*

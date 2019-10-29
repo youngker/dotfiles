@@ -22,6 +22,9 @@ myEditorApp = "emacsclient -c"
 myEmacsDaemon :: String
 myEmacsDaemon = "emacs --daemon"
 
+myIBusDaemon :: String
+myIBusDaemon = "ibus-daemon"
+
 myKeyboardSetting :: String
 myKeyboardSetting = "init-keyboard"
 
@@ -32,7 +35,7 @@ myCompositorApp :: String
 myCompositorApp = "compton"
 
 myMailClient :: String
-myMailClient = "thunderbird-bin"
+myMailClient = "thunderbird"
 
 volumeAction :: Action -> String
 volumeAction Increase = "amixer --card 1 -q set PCM 5%+"

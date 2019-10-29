@@ -3,16 +3,16 @@
 ! ------------------------------------------------------------------------------
 
 ! General
-rofi.font:                DejaVu Sans Mono 9
+rofi.font:                Operator Mono SSm Bold 20
 rofi.fake-transparency:   true
 rofi.hide-scrollbar:      true
 
 ! Layout
-rofi.width:              25
+rofi.width:              50
 rofi.column:             4
 rofi.location:           0
 rofi.lines:              8
-rofi.padding:            30
+rofi.padding:            100
 rofi.sidebar-mode:       false
 rofi.fullscreen:         false
 
