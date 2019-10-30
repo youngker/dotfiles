@@ -3,7 +3,7 @@
 ! ------------------------------------------------------------------------------
 
 ! General
-rofi.font:                Operator Mono SSm Bold 20
+rofi.font:                Lucida Grande Bold 20
 rofi.fake-transparency:   true
 rofi.hide-scrollbar:      true
 
