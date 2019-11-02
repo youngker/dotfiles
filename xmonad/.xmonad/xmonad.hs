@@ -25,6 +25,7 @@ import XMonad.Layout.NoFrillsDecoration (noFrillsDeco)
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Reflect
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.ShowWName
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 import XMonad.ManageHook
@@ -114,7 +115,7 @@ data Colors
   | CurrentTitle
   deriving (Eq, Ord, Show)
 
-color :: Colors -> [Char]
+color :: Colors -> String
 color x =
   case x of
     NormalBorder -> "#2e3440"
@@ -128,23 +129,23 @@ color x =
 
 myTabConfig =
   def
-    { inactiveBorderColor = (color InActiveTabBackground)
-    , inactiveColor = (color InActiveTabBackground)
-    , inactiveTextColor = (color InActiveBackground)
-    , activeBorderColor = (color ActiveBackground)
-    , activeColor = (color ActiveBackground)
-    , activeTextColor = (color ActiveBackground)
+    { inactiveBorderColor = color InActiveTabBackground
+    , inactiveColor = color InActiveTabBackground
+    , inactiveTextColor = color InActiveBackground
+    , activeBorderColor = color ActiveBackground
+    , activeColor = color ActiveBackground
+    , activeTextColor = color ActiveBackground
     , decoHeight = 10
     }
 
 myTitleBarConfig =
   def
-    { inactiveBorderColor = (color InActiveBackground)
-    , inactiveColor = (color InActiveBackground)
-    , inactiveTextColor = (color InActiveBackground)
-    , activeBorderColor = (color ActiveBackground)
-    , activeColor = (color ActiveBackground)
-    , activeTextColor = (color ActiveBackground)
+    { inactiveBorderColor = color InActiveBackground
+    , inactiveColor = color InActiveBackground
+    , inactiveTextColor = color InActiveBackground
+    , activeBorderColor = color ActiveBackground
+    , activeColor = color ActiveBackground
+    , activeTextColor = color ActiveBackground
     , decoHeight = 10
     }
 
@@ -156,6 +157,7 @@ startup =
   , "emacs --daemon"
   , "xrdb ~/.Xresources"
   , "ibus-daemon"
+  , "setxkbmap -option ctrl:nocaps"
   ]
 
 data Workspace =
@@ -172,7 +174,7 @@ workspace =
   , WS "vm" $ spawn "st"
   ]
 
-additionalKey :: [([Char], X ())]
+additionalKey :: [(String, X ())]
 additionalKey =
   [ ("M-S-c", kill)
   , ("M-<Space>", sendMessage NextLayout)
@@ -203,7 +205,7 @@ myComplexKeys =
   , ((mod3Mask, xK_period), sendMessage (IncMasterN (-1)))
   ]
 
-keyboard conf@(XConfig {XMonad.modMask = modm}) =
+keyboard conf@XConfig {XMonad.modMask = modm} =
   M.fromList $
   [ ((m .|. modm, k), windows $ f i)
   | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
@@ -235,12 +237,12 @@ configuration =
           , manageScratchPad
           , composeAll myFullscreenHooks
           ]
-    , layoutHook = avoidStruts $ smartBorders layout
+    , layoutHook = showWName $ avoidStruts $ smartBorders layout
     , workspaces = map workspaceName workspace
     , startupHook = mapM_ spawn startup
     , keys = keyboard
-    , normalBorderColor = (color NormalBorder)
-    , focusedBorderColor = (color FocusedBorder)
+    , normalBorderColor = color NormalBorder
+    , focusedBorderColor = color FocusedBorder
     , modMask = mod1Mask
     , terminal = myTerminalApp
     , focusFollowsMouse = False
