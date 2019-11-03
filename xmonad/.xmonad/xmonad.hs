@@ -13,6 +13,7 @@ import XMonad.Actions.PhysicalScreens
 import XMonad.Actions.SwapWorkspaces (swapWithCurrent)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.FadeWindows
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.Place
@@ -94,7 +95,7 @@ myManagementHooks =
   , [className =? c --> doFloat | c <- myFloats]
   ]
   where
-    myFloats = ["urxvt", "rgt", "Org.gnome.Nautilus", "Gnome-terminal"]
+    myFloats = ["rgt", "Org.gnome.Nautilus", "Gnome-terminal"]
 
 manageScratchPad :: ManageHook
 manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
@@ -147,6 +148,14 @@ myTitleBarConfig =
     , activeColor = color ActiveBackground
     , activeTextColor = color ActiveBackground
     , decoHeight = 10
+    }
+
+confShowWName =
+  def
+    { swn_font    = "xft:Lucida Grande:bold:size=50"
+    ,swn_bgcolor = color InActiveBackground
+    ,swn_color   = color ActiveBackground
+    ,swn_fade    = 2
     }
 
 startup =
@@ -237,7 +246,7 @@ configuration =
           , manageScratchPad
           , composeAll myFullscreenHooks
           ]
-    , layoutHook = showWName $ avoidStruts $ smartBorders layout
+    , layoutHook = showWName' confShowWName $ avoidStruts $ smartBorders layout
     , workspaces = map workspaceName workspace
     , startupHook = mapM_ spawn startup
     , keys = keyboard
@@ -261,6 +270,13 @@ _xmobarPP =
     , ppCurrent = xmobarColor (color CurrentWorkspace) ""
     }
 
+fadeLogHook = fadeWindowsLogHook fadeHook
+  where fadeHook :: FadeHook
+        fadeHook = composeAll [ opaque
+                              , isUnfocused --> transparency 0.1
+                              , isFloating --> opaque
+                              ]
+
 main = do
   n <- countScreens
   xmprocs <- mapM (\i -> spawnPipe $ "xmobar -x" ++ show i) [0 .. n - 1]
@@ -268,4 +284,4 @@ main = do
         mapM_
           (\handle -> dynamicLogWithPP $ _xmobarPP {ppOutput = hPutStrLn handle})
           xmprocs
-  xmonad $ docks configuration {logHook = loghook}
+  xmonad $ docks configuration {logHook = composeAll [ loghook, fadeLogHook ]}

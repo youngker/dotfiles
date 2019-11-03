@@ -6,13 +6,10 @@ Config {
    , bgColor =      "#2E3440"
    , fgColor =      "#ECEFF4"
    , position =     BottomSize C 100 25
-   -- , border =       BottomB
-   -- , borderColor =  "#646464"
 
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   -- , template = " %StdinReader%  }{ %multicpu% | %coretemp% | %memory% | %dynnetwork% | %battery% | %date% || %kbd% "
    , template = " %StdinReader%  }{ %multicpu% %memory% %dynnetwork% %date% "
 
    -- general behavior
@@ -23,46 +20,18 @@ Config {
    , pickBroadest =     False   -- choose widest display (multi-monitor)
    , persistent =       True    -- enable/disable hiding (True = disabled)
 
-   -- plugins
-   --   Numbers can be automatically colored according to their value. xmobar
-   --   decides color based on a three-tier/two-cutoff system, controlled by
-   --   command options:
-   --     --Low sets the low cutoff
-   --     --High sets the high cutoff
-   --
-   --     --low sets the color below --Low cutoff
-   --     --normal sets the color between --Low and --High cutoffs
-   --     --High sets the color above --High cutoff
-   --
-   --   The --template option controls how the plugin is displayed. Text
-   --   color can be set by enclosing in <fc></fc> tags. For more details
-   --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
    , commands =
 
-        -- weather monitor
-        [ Run Weather "RJTT" [ "--template", "<skyCondition> | <fc=#4682B4><tempC></fc>°C | <fc=#4682B4><rh></fc>% | <fc=#4682B4><pressure></fc>hPa"
-                             ] 36000
-
         -- network activity monitor (dynamic interface resolution)
-        -- , Run DynNetwork     [ "--template" , "<fn=1>\xf0ac</fn> <tx>/<rx>"
-        , Run DynNetwork     [ "--template" , "<fc=#ebcb8b><fn=1>\xf0ac</fn></fc> <tx>/<rx>"
-        --                     , "--Low"      , "1000"       -- units: kB/s
-        --                     , "--High"     , "5000"       -- units: kB/s
-        --                     , "--low"      , "darkgreen"
-        --                     , "--normal"   , "darkorange"
-        --                     , "--high"     , "darkred"
+        [ Run DynNetwork     [ "--template" , "<fc=#ebcb8b><fn=1>\xf0ac</fn></fc> <tx>/<rx>"
                              , "-w"         , "3"
+                             , "-c"         , "0"
                              ] 10
 
         -- cpu activity monitor
-        -- , Run MultiCpu       [ "--template" , "<fn=1>\xf108</fn> <total0>/<total1>"
         , Run MultiCpu       [ "--template" , "<fc=#bf616a><fn=1>\xf108</fn></fc> <total0>"
-        --                     , "--Low"      , "50"         -- units: %
-        --                     , "--High"     , "85"         -- units: %
-        --                     , "--low"      , "darkgreen"
-        --                     , "--normal"   , "darkorange"
-        --                     , "--high"     , "darkred"
                              , "-w"         , "2"
+                             , "-c"         , "0"
                              ] 10
 
         -- cpu core temperature monitor
@@ -75,41 +44,12 @@ Config {
                              ] 50
 
         -- memory usage monitor
-        -- , Run Memory         [ "--template" ,"<fn=1>\xf2db</fn> <usedratio>"
         , Run Memory         [ "--template" ,"<fc=#d08770><fn=1>\xf2db</fn></fc> <usedratio>"
-        --                     , "--Low"      , "20"        -- units: %
-        --                     , "--High"     , "90"        -- units: %
-        --                     , "--low"      , "darkgreen"
-        --                     , "--normal"   , "darkorange"
-        --                     , "--high"     , "darkred"
                              ] 10
 
-        -- battery monitor
-        , Run Battery        [ "--template" , "<fn=1>\xf240</fn> <acstatus>"
-                             , "--Low"      , "10"        -- units: %
-                             , "--High"     , "80"        -- units: %
-                             , "--low"      , "darkred"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkgreen"
-
-                             , "--" -- battery specific options
-                                       -- discharging status
-                                       , "-o" , "<left>% (<timeleft>)"
-                                       -- AC "on" status
-                                       , "-O" , "<fc=#dAA520>Charging</fc>"
-                                       -- charged status
-                                       , "-i" , "<fc=#006000>Charged</fc>"
-                             ] 50
-
         -- time and date indicator
-        --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        -- , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
         , Run Date           "<fc=#a3be8c><fn=1>\xf133</fn></fc> %a, %d %B %H:%M" "date" 100
 
-        -- keyboard layout indicator
-        , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
-                             , ("us"         , "<fc=#8B0000>US</fc>")
-                             ]
         ,Run StdinReader
         ]
-   }
+}
