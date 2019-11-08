@@ -21,7 +21,7 @@ import           XMonad.Hooks.UrgencyHook
 import           XMonad.Layout.Grid
 import           XMonad.Layout.IndependentScreens
 import           XMonad.Layout.LayoutModifier
-import           XMonad.Layout.NoBorders        ( smartBorders )
+import           XMonad.Layout.NoBorders
 import           XMonad.Layout.NoFrillsDecoration
                                                 ( noFrillsDeco )
 import           XMonad.Layout.MultiToggle
@@ -83,8 +83,8 @@ _XPConfig = def { font              = "xft:Lucida Grande:bold:size=15"
                 , position          = CenteredAt 0.1 0.7
                 , height            = 50
                 , historySize       = 256
-                , bgColor           = color InActiveBackground
-                , fgColor           = color ActiveBackground
+                , bgColor           = "black"
+                , fgColor           = "white"
                 , bgHLight          = color CurrentWorkspace
                 , defaultText       = ""
                 , autoComplete      = Nothing
@@ -240,6 +240,11 @@ layout = deco $ stiled ||| Mirror stiled ||| tabbed shrinkText myTabConfig
     _slaves  = []
     deco     = noFrillsDeco shrinkText myTitleBarConfig
 
+data AllFloats = AllFloats deriving (Read, Show)
+
+instance SetsAmbiguous AllFloats where
+    hiddens _ wset _ _ _ = M.keys $ W.floating wset
+
 configuration =
     ewmh
         $                 def
@@ -252,7 +257,9 @@ configuration =
                                                          , composeAll myFullscreenHooks
                                                          ]
                               , layoutHook         = showWName' confShowWName
-                                                     $ mkToggle (single FULL) $avoidStruts
+                                                     $ lessBorders AllFloats
+                                                     $ mkToggle (single FULL)
+                                                     $ avoidStruts
                                                      $ smartBorders layout
                               , workspaces         = map workspaceName workspace
                               , startupHook        = mapM_ spawn startup
@@ -282,7 +289,6 @@ fadeLogHook = fadeWindowsLogHook fadeHook
     fadeHook = composeAll
         [opaque, isUnfocused --> transparency 0.05, isFloating --> opaque]
 
--- adf
 main = do
     nScreens <- countScreens
     xmprocs  <- mapM (\i -> spawnPipe $ "xmobar -x" ++ show i)
