@@ -246,30 +246,29 @@ instance SetsAmbiguous AllFloats where
     hiddens _ wset _ _ _ = M.keys $ W.floating wset
 
 configuration =
-    ewmh
-        $                 def
-                              { manageHook         = composeAll
-                                                         [ placeHook myPlacement
-                                                         , manageDocks
-                                                         , manageHook def
-                                                         , myManagementHooks
-                                                         , manageScratchPad
-                                                         , composeAll myFullscreenHooks
-                                                         ]
-                              , layoutHook         = showWName' confShowWName
-                                                     $ lessBorders AllFloats
-                                                     $ mkToggle (single FULL)
-                                                     $ avoidStruts
-                                                     $ smartBorders layout
-                              , workspaces         = map workspaceName workspace
-                              , startupHook        = mapM_ spawn startup
-                              , keys               = keyboard
-                              , normalBorderColor  = color NormalBorder
-                              , focusedBorderColor = color FocusedBorder
-                              , modMask            = mod1Mask
-                              , terminal           = myTerminalApp
-                              , focusFollowsMouse  = False
-                              }
+    def
+            { manageHook         = composeAll
+                                       [ placeHook myPlacement
+                                       , manageDocks
+                                       , manageHook def
+                                       , myManagementHooks
+                                       , manageScratchPad
+                                       , composeAll myFullscreenHooks
+                                       ]
+            , layoutHook         = showWName' confShowWName
+                                   $ lessBorders AllFloats
+                                   $ mkToggle (single FULL)
+                                   $ avoidStruts
+                                   $ smartBorders layout
+            , workspaces         = map workspaceName workspace
+            , startupHook        = mapM_ spawn startup
+            , keys               = keyboard
+            , normalBorderColor  = color NormalBorder
+            , focusedBorderColor = color FocusedBorder
+            , modMask            = mod1Mask
+            , terminal           = myTerminalApp
+            , focusFollowsMouse  = False
+            }
         `additionalKeysP` additionalKey
         `additionalKeys`  myComplexKeys
 
@@ -299,4 +298,6 @@ main = do
                 dynamicLogWithPP $ _xmobarPP { ppOutput = hPutStrLn handle }
             )
             xmprocs
-    xmonad $ docks configuration { logHook = composeAll [loghook, fadeLogHook] }
+    xmonad $ ewmh $ docks $ configuration
+        { logHook = composeAll [loghook, fadeLogHook]
+        }
