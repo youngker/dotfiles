@@ -16,45 +16,15 @@ Config
     commands =
       [ Run
           DynNetwork
-          [ "--template",
-            "<fc=#ebcb8b><fn=1>\xf0ac</fn></fc> <tx>/<rx>",
-            "-w",
-            "3",
-            "-c",
-            "0"
-          ]
+          ["--template", "<fc=#ebcb8b><fn=1>\xf0ac</fn></fc> <tx>/<rx>", "-w", "3", "-c", "0"]
           10,
         Run
           MultiCpu
-          [ "--template",
-            "<fc=#bf616a><fn=1>\xf108</fn></fc> <total0>",
-            "-w",
-            "2",
-            "-c",
-            "0"
-          ]
+          ["-t", "<fc=#bf616a><fn=1>\xf108</fn></fc> <autototal>", "-p", "2", "-c", "0", "-L", "10", "-H", "50", "--normal", "#ebcb8b", "--high", "#d08770"]
           10,
         Run
-          CoreTemp
-          [ "--template",
-            "Temp: <core0>°C|<core1>°C",
-            "--Low",
-            "70",
-            "--High",
-            "80",
-            "--low",
-            "darkgreen",
-            "--normal",
-            "darkorange",
-            "--high",
-            "darkred"
-          ]
-          50,
-        Run
           Memory
-          [ "--template",
-            "<fc=#d08770><fn=1>\xf2db</fn></fc> <usedratio>"
-          ]
+          ["--template", "<fc=#d08770><fn=1>\xf2db</fn></fc> <usedratio>"]
           10,
         Run Date "<fc=#a3be8c><fn=1>\xf133</fn></fc> %a, %d %B %H:%M" "date" 100,
         Run StdinReader

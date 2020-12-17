@@ -172,7 +172,7 @@ additionalKey =
     ("M-z", sendMessage $ Toggle FULL),
     ("M-t", withFocused $ windows . W.sink),
     ("M-<Return>", spawn myAppLauncherApp),
-    ("M-S-<Return>", spawn myEditorApp),
+    ("M-S-<Return>", spawn myTerminalApp),
     ("M-S-b", spawn myBrowserApp),
     ("<F9>", spawn "xmonad --recompile"),
     ("<F10>", spawn "xmonad --recompile; xmonad --restart")
@@ -207,7 +207,7 @@ layout = deco $ tall ||| Mirror tall ||| grid ||| tab
 fadeLogHook = fadeWindowsLogHook fadeHook
   where
     fadeHook :: FadeHook
-    fadeHook = opaque <+> (isUnfocused --> transparency 0.1) <+> (isFloating --> opaque)
+    fadeHook = opaque <+> (isUnfocused --> transparency 0.05) <+> (isFloating --> opaque)
 
 myXmobar :: (Int, Handle) -> X ()
 myXmobar (screenId, xmobarPipe) = do
