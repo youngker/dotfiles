@@ -102,7 +102,7 @@ color x = case x of
   CurrentWorkspace -> "#bf616a"
   CurrentTitle -> "#a3be8c"
 
-myTitleBarConfig =
+titleConfig =
   def
     { inactiveBorderColor = color InActiveBackground,
       inactiveColor = color InActiveBackground,
@@ -186,11 +186,15 @@ keyboard conf@XConfig {XMonad.modMask = modm} =
              (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
          ]
 
-layout = deco $ tall ||| Mirror tall ||| grid ||| simpleTabbed
+layout = tile ||| mtile ||| grid ||| tab
   where
-    tall = spacingWithEdge 4 $ ResizableTall 1 (1 / 10) (1 / 2) []
-    grid = spacingWithEdge 4 Grid
-    deco = noFrillsDeco shrinkText myTitleBarConfig
+    spc = spacingWithEdge 4
+    tall = spc $ ResizableTall 1 (1 / 10) (1 / 2) []
+    tile = deco tall
+    mtile = deco $ Mirror tile
+    grid = deco $ spc Grid
+    tab = tabbed shrinkText titleConfig
+    deco = noFrillsDeco shrinkText titleConfig
 
 fadeLogHook = fadeWindowsLogHook fadeHook
   where
