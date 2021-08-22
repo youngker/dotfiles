@@ -17,6 +17,6 @@ then
 fi
 
 # Source the system-wide file.
-source /etc/bashrc
+# source /etc/bashrc
 
 [ -n "$PS1" ] && source ~/.bash_profile;
