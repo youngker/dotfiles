@@ -1,5 +1,5 @@
 export PATH="$HOME/.local/bin:$PATH";
-
+export BASH_SILENCE_DEPRECATION_WARNING=1
 for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
